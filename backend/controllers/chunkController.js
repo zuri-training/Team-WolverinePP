@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const model = require('../models/chunkSchema')
+const chunkModel = require('../models/chunkSchema')
 
 
 
