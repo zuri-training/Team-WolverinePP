@@ -5,9 +5,7 @@ const { isEmail } = require('validator');
 //****Data Schema for chunk_file project****
 
 const chunkSchema = new mongoose.Schema({
-  User: { 
-
-    Email: { 
+  User: { Email: { 
         type: String,
         required: true,
         trim: true,
@@ -32,6 +30,10 @@ const chunkSchema = new mongoose.Schema({
         required: true
             }
 },
+    Date: { 
+      type: Date,
+      Default: Date.now
+     },
 
 File: { 
     data: Buffer,
@@ -44,4 +46,6 @@ File: {
 // ****Create Model from Schema****
 
 exports.fileSplitter = mongoose.model('fileSplitter', chunkSchema);
+
+
 
