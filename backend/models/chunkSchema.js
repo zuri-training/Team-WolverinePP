@@ -5,7 +5,13 @@ const { isEmail } = require('validator');
 //****Data Schema for chunk_file project****
 
 const chunkSchema = new mongoose.Schema({
-  User: { Email: { 
+  User: { 
+    Name: { 
+        type: String,
+        trim: true,
+        required: true
+        },
+    Email: { 
         type: String,
         required: true,
         trim: true,
@@ -13,11 +19,6 @@ const chunkSchema = new mongoose.Schema({
                     message: "Please enter a valid email address.!"
                     }
             },
-    Name: { 
-        type: String,
-        trim: true,
-        required: true
-        },
     Username: { 
         type: String,
         unique: true,
@@ -28,20 +29,27 @@ const chunkSchema = new mongoose.Schema({
         type: String,
         unique: true,
         required: true
-            }
+            },
+    ConfirmPassword: {
+        type: String,
+        unique: true,
+        required: true
+      }
 },
-    Date: { 
-      type: Date,
-      Default: Date.now
-     },
+  
+Date: { 
+   type: Date,
+   Default: Date.now()
+  },
 
 File: { 
     data: Buffer,
     contentType: String
       }
-},
+  },
 { timestamps: true }
 );
+
 
 // ****Create Model from Schema****
 
