@@ -32,7 +32,7 @@ const chunkSchema = new mongoose.Schema({
 },
     Date: { 
       type: Date,
-      Default: Date.now
+      Default: Date.now()
      },
 
 File: { 
