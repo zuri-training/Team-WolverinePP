@@ -6,7 +6,7 @@ const expiryTime = 3600;
 
 exports.registerNewUser = (req, res) => {
   // fetch user details from body
-  // check of user with this username exists
+  // check if user with this username exists
   User.findOne({ username: req.body.username }, (err, existingUser) => {
     if (err) {
       return res.status(500).json({ err });
