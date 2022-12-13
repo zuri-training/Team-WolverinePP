@@ -1,51 +1,50 @@
-const mongoose = require('mongoose');
-const { isEmail } = require('validator');
-
+const mongoose = require("mongoose");
+const { isEmail } = require("validator");
 
 //****Data Schema for chunk_file project****
 
-const chunkSchema = new mongoose.Schema({
-  User: { Email: { 
+const chunkSchema = new mongoose.Schema(
+  {
+    User: {
+      Email: {
         type: String,
         required: true,
         trim: true,
-        validate: { validator: isEmail,
-                    message: "Please enter a valid email address.!"
-                    }
-            },
-    Name: { 
-        type: String,
-        trim: true,
-        required: true
+        validate: {
+          validator: isEmail,
+          message: "Please enter a valid email address.!",
         },
-    Username: { 
+      },
+      Name: {
+        type: String,
+        trim: true,
+        required: true,
+      },
+      Username: {
         type: String,
         unique: true,
         trim: true,
-        required: true
-            },
-    Password: { 
+        required: true,
+      },
+      Password: {
         type: String,
         unique: true,
-        required: true
-            }
-},
-    Date: { 
+        required: true,
+      },
+    },
+    Date: {
       type: Date,
-      Default: Date.now()
-     },
+      Default: Date.now(),
+    },
 
-File: { 
-    data: Buffer,
-    contentType: String
-      }
-},
-{ timestamps: true }
+    File: {
+      data: Buffer,
+      contentType: String,
+    },
+  },
+  { timestamps: true }
 );
 
 // ****Create Model from Schema****
 
-exports.fileSplitter = mongoose.model('fileSplitter', chunkSchema);
-
-
-
+exports.fileSplitter = mongoose.model("fileSplitter", chunkSchema);

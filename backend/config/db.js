@@ -1,7 +1,15 @@
 const mongoose = require("mongoose");
+const { config } = require("dotenv");
 
-mongoose.connect("mongodb://localhost:27017/******").then(()=>{
-    console.log("connected!");
-}).catch((err)=>{
-    console.log("error");
-})
+config();
+
+async function connectDB(uri) {
+  try {
+    mongoose.connect(uri || process.env.MONGO_DB_LOCAL);
+    console.log("connected to MongoDB!");
+  } catch (error) {
+    console.logl(error.message);
+  }
+}
+
+module.exports = connectDB;
