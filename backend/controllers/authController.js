@@ -79,17 +79,19 @@ const { name, email, username, password } = req.body;
 };
 
 exports.loginUser = (req, res) => {
+  const {email, username, password} = req.body;
+  
   // check if user exists
-  User.findOne({ username: req.body.username }, (err, foundUser) => {
+  User.findOne({ username }, (err, foundUser) => {
     if (err) {
       return res.status(500).json({ err })
     }
     if (!foundUser)  {
       return res.status(401).json({ message: "incorrect username "})
     }
-    let match = bcrypt.compareSync(req.body.password, foundUser.password)
+    let match = bcrypt.compareSync(password, foundUser.password)
     if (!match) {
-      return res.status(401).json({ message: "incorrect password"})
+      return res.status(400).json({ message: "incorrect password"})
     }
     // create a token
     jwt.sign({
