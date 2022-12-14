@@ -1,8 +1,10 @@
 const User = require("../models/userSchema");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const secret = "verySecureSECRET";
-const expiryTime = 3600;
+require("dotenv").config();
+const { SECRET } = process.env;
+
+const expiryTime = 36000;
 
 exports.registerNewUser = (req, res) => {
   // fetch user details from request body
@@ -56,7 +58,7 @@ const { name, email, username, password } = req.body;
                   name: newUser.name,
                   email: newUser.email,
                 },
-                secret,
+                SECRET,
                 { expiresIn: expiryTime },
                 (err, token) => {
                   if (err) {
@@ -99,7 +101,7 @@ exports.loginUser = (req, res) => {
       username: foundUser.username,
       name: foundUser.name,
       email: foundUser.email
-    }, secret, {
+    }, SECRET, {
       expiresIn: expiryTime
     }, (err, token) => {
       if (err) {
