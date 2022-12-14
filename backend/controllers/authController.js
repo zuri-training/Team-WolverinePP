@@ -93,7 +93,7 @@ exports.loginUser = (req, res) => {
       expiresIn: expiryTime
     }, (err, token) => {
       if (err) {
-        return res.status(500).jsom({ err })
+        return res.status(500).json({ err })
       }
       return res.status(200).json({
         message: "user logged in successfully",
