@@ -31,12 +31,12 @@ exports.registerNewUser = (req, res) => {
           if (err) {
             return res.status(500).json({ err });
           }
-          bcrypt.hash(req.body.password, salt, (err, harshedPassword) => {
+          bcrypt.hash(req.body.password, salt, (err, hashedPassword) => {
             if (err) {
               return res.status(500).json({ err });
             }
             // save password to db
-            newUser.password = harshedPassword;
+            newUser.password = hashedPassword;
             newUser.save((err, savedUser) => {
               if (err) {
                 return res.status(500).json({ err });
