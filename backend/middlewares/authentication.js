@@ -1,5 +1,7 @@
 const jwt = require('jsonwebtoken')
-const secret = "verySecureSECRET";
+
+require('dotenv').config();
+const {SECRET} = process.env;
 
 exports.authenticateUser = (req, res, next) => {
   // check if there is an authorization token
@@ -17,7 +19,7 @@ exports.authenticateUser = (req, res, next) => {
   }
   let token = headerSplit[1];
 //   check validity
-  jwt.verify(token, secret, (err, decodedToken) => {
+  jwt.verify(token, SECRET, (err, decodedToken) => {
     if (err) return res.status(500).json({ err })
     if (!decodedToken) {
         return res.status(401).json({message: "invalid authorization token, login to continue"})

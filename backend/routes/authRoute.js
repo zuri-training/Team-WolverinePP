@@ -1,37 +1,23 @@
-const express = require("express");
-const router = express.Router();
-const path = require("path");
+// const express = require("express");
+// const router = express.Router();
+// const path = require("path");
 
-const AuthController = require("../controllers/authController");
+const router = require("express").Router();
+const { authenticateUser } = require("../middlewares/authentication.js");
+const authController = require("../controllers/authController.js");
+const pageController = require("../controllers/pageController.js");
+const chunkController = require("../controllers/chunkController.js");
 
+//Set up routes for registration and Login
 
-const landingPage = path.join(__dirname, "../frontend/static/landingPage.html");
-const signupPage = path.join(__dirname, "../frontend/static/sign-up.html");
-const loginPage = path.join(__dirname, "../frontend/static/Login.html");
+router
+  .get("/", pageController.getLandingPage)
+  .get("/signup", pageController.getSignUpPage)
+  .get("/login", pageController.getLoginPage)
+  .post("/signup", authenticateUser(), authController.registerNewUser)
+  // .post("/login", auth, authController.loginUser)
+  // .post("/library", auth, chunkController.split);
 
-//landing page
-exports.getLandingPage = (req, res) => {
-  res.sendFile(landingPage, (err, data) => {
-    if (err) throw err;
-    res.status(200).send(data);
-  });
-};
-
-//Sign-up
-exports.getSignUp = (req, res) => {
-  res.sendFile(signupPage, (err, data) => {
-    if (err) throw err;
-    res.status(200).send(data);
-  });
-};
-
-//Log in
-exports.getLoginPage = (req, res) => {
-  res.sendFile(loginPage, (err, data) => {
-    if (err) throw err;
-    res.status(200).send(data);
-  });
-};
-
+// const AuthController = require("../controllers/authController");
 
 module.exports = router;

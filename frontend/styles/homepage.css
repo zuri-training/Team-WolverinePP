@@ -131,8 +131,19 @@ input{
     margin: 32px;
     width: auto;
     height: 200px;
+    max-width: 800px;
     border-color: #006BA6;
-    
+}
+
+/* input field */
+.dash-container input {
+    position: absolute;
+    top: 24%;
+    padding: 87px;
+    width: 800px;
+    color: transparent;
+    opacity: 0.1;
+    /* visibility: hidden; */
 }
 
 .Text{

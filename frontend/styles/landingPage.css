@@ -510,3 +510,16 @@ footer #copy {
     text-align: center;
     margin-top: 40px;
 }
+
+/* 
+@media  (max-width: 900px) {
+
+    .right{
+        height: 100%;
+        width: 100vh;
+        background-color: white;
+        border-radius: 2rem 0 0 0;
+        padding: 20px 50px; 
+    } 
+    
+} */
