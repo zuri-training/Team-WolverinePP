@@ -3,7 +3,7 @@ const fs = require('fs');
 const csv = require('csv-parser');
 const fastcsv = require('fast-csv');
 
-exports.createList = async() => {
+const createList = async() => {
     const processedJson = [];
     const csvToJsonParsing = new Promise(function(resolve, reject) {
         fs.createReadStream('trades.csv')
@@ -20,7 +20,7 @@ await csvToJsonParsing;
     return processedJson;
 }
 
-    exports.fileSplitter = async(processedJson) => {
+const fileSplitter = async(processedJson) => {
     console.log('Splitting original file...');
     let startingPoint = 0;
     let linesWritten = 0;
@@ -69,7 +69,7 @@ await csvToJsonParsing;
     console.log('File split complete ...');
 }
                     
-exports.split = async() => {
+const split = async() => {
     console.log('**** FILE SPLITTER ****');
 
     // get JSON Array of all lines in original file
@@ -81,7 +81,7 @@ exports.split = async() => {
     console.log('**** FILE SPLITTER COMPLETE ****');
 }
 
-split();
+module.exports = split();
 
 
 
