@@ -1,13 +1,9 @@
 const express = require("express");
-const router = express.Router();
 const path = require("path");
-
-const AuthController = require("../controllers/authController");
-
 
 const landingPage = path.join(__dirname, "../frontend/static/landingPage.html");
 const signupPage = path.join(__dirname, "../frontend/static/sign-up.html");
-const loginPage = path.join(__dirname, "../frontend/static/Login.html");
+const loginPage = path.join(__dirname, "../frontend/static/sign-in.html");
 
 //landing page
 exports.getLandingPage = (req, res) => {
@@ -32,6 +28,3 @@ exports.getLoginPage = (req, res) => {
     res.status(200).send(data);
   });
 };
-
-
-module.exports = router;

@@ -3,24 +3,23 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const secret = "verySecureSECRET";
 const expiryTime = 3600;
-
-exports.registerNewUser = (req, res) => {
+const username = (exports.registerNewUser = (req, res) => {
   // fetch user details from body
-  // check of user with this username exists
-  User.findOne({ username: req.body.username }, (err, existingUser) => {
+  // check of user with this email exists
+  User.findOne({ email: req.body.email }, (err, existingUser) => {
     if (err) {
       return res.status(500).json({ err });
     }
     if (existingUser) {
-      return res.status(400).json({ message: "username already exist" });
+      return res.status(400).json({ message: "email already exist" });
     }
     // create a new user
     User.create(
       {
-        name: req.body.name,
-        email: req.body.email,
+        fullName: req.body.fullName,
         username: req.body.username,
-        password: req.body.password
+        email: req.body.email,
+        password: req.body.password,
       },
       (err, newUser) => {
         if (err) {
@@ -45,8 +44,8 @@ exports.registerNewUser = (req, res) => {
               jwt.sign(
                 {
                   id: newUser.id,
-                  username: newUser.username,
-                  name: newUser.name,
+                  fullName: newUser.fullName,
+                  username: req.body.username,
                   email: newUser.email,
                 },
                 secret,
@@ -68,37 +67,42 @@ exports.registerNewUser = (req, res) => {
       }
     );
   });
-};
+});
 
 exports.loginUser = (req, res) => {
   // check if user exists
-  User.findOne({ username: req.body.username }, (err, foundUser) => {
+  User.findOne({ email: req.body.email }, (err, foundUser) => {
     if (err) {
-      return res.status(500).json({ err })
+      return res.status(500).json({ err });
     }
-    if (!foundUser)  {
-      return res.status(401).json({ message: "incorrect username "})
+    if (!foundUser) {
+      return res.status(401).json({ message: "incorrect email " });
     }
-    let match = bcrypt.compareSync(req.body.password, foundUser.password)
+    let match = bcrypt.compareSync(req.body.password, foundUser.password);
     if (!match) {
-      return res.status(401).json({ message: "incorrect password"})
+      return res.status(401).json({ message: "incorrect password" });
     }
     // create a token
-    jwt.sign({
-      id: foundUser._id,
-      username: foundUser.username,
-      name: foundUser.name,
-      email: foundUser.email
-    }, secret, {
-      expiresIn: expiryTime
-    }, (err, token) => {
-      if (err) {
-        return res.status(500).jsom({ err })
+    jwt.sign(
+      {
+        id: foundUser._id,
+        fullName: foundUser.fullName,
+        username: req.body.username,
+        email: foundUser.email,
+      },
+      secret,
+      {
+        expiresIn: expiryTime,
+      },
+      (err, token) => {
+        if (err) {
+          return res.status(500).jsom({ err });
+        }
+        return res.status(200).json({
+          message: "user logged in successfully",
+          token,
+        });
       }
-      return res.status(200).json({
-        message: "user logged in successfully",
-        token
-      })
-    })
-  })
-}
+    );
+  });
+};
