@@ -1,5 +1,4 @@
 const chunkModel = require('../models/chunkSchema');
-const chunkModel = require('../models/chunkSchema');
 const fs = require('fs');
 const csv = require('csv-parser');
 const fastcsv = require('fast-csv');
@@ -17,21 +16,21 @@ exports.createList = async() => {
             });
     });
 
-    await csvToJsonParsing;
+await csvToJsonParsing;
     return processedJson;
 }
 
-exports.fileSplitter = async(processedJson) => {
+    exports.fileSplitter = async(processedJson) => {
     console.log('Splitting original file...');
     let startingPoint = 0;
     let linesWritten = 0;
     const chunkSize = 5000;
     console.log(processedJson.length);
 
-    // this reprenents the number of files the original file will be broken into
+   // this represents the number of files the original file will be broken into
     numChunks = Math.ceil(processedJson.length/chunkSize);
 
-    for (let i = 0; i < numChunks; i++) {
+ for (let i = 0; i < numChunks; i++) {
         if (linesWritten >= processedJson.length) {
             break;
         }
@@ -39,7 +38,7 @@ exports.fileSplitter = async(processedJson) => {
         // the data that will get written into the current smaller file
         const jsonChunk = [];
 
-        for (let j = startingPoint; j < startingPoint + chunkSize; j++) {
+    for (let j = startingPoint; j < startingPoint + chunkSize; j++) {
             jsonChunk.push(processedJson[j]);
             if (j < processedJson.length) {
                 linesWritten++;
@@ -47,7 +46,7 @@ exports.fileSplitter = async(processedJson) => {
                 if (j == startingPoint + chunkSize - 1) {
                     startingPoint = j + 1;
 
-                    // file chunk to be written
+        // file chunk to be written
                     const writeStream = await fs.createWriteStream('file-'+ i +'.csv');
                     const options = {headers: true};
                     const generateCsv = fastcsv.write(jsonChunk, options);
@@ -69,8 +68,8 @@ exports.fileSplitter = async(processedJson) => {
     }
     console.log('File split complete ...');
 }
-
-exports.driver = async() =>{
+                    
+exports.split = async() => {
     console.log('**** FILE SPLITTER ****');
 
     // get JSON Array of all lines in original file
@@ -82,7 +81,8 @@ exports.driver = async() =>{
     console.log('**** FILE SPLITTER COMPLETE ****');
 }
 
-driver();
+split();
+
 
 
 
