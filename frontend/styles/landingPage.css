@@ -97,6 +97,9 @@ header {
     cursor: pointer;
 }
 
+.nav-buttons button a {
+    text-decoration: none;
+}
 
 .nav-buttons #login:hover {
     color: #6C65BA;
