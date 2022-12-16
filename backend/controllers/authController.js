@@ -3,6 +3,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 const { SECRET } = process.env;
+const path = require("path")
 
 const expiryTime = 36000;
 
@@ -66,11 +67,9 @@ exports.registerNewUser = (req, res) => {
                   }
 
                   // send token to user
-                  return res.status(200).json({
-                    message: "Registration successful",
-                    token,
-                    
-                  });
+                  return res.status(200).sendFile(
+                    path.join(__dirname, "../../frontend/static/homepage.html")
+                  );
                 }
               );
             });

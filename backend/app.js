@@ -1,8 +1,5 @@
-// const startServer = require("../server.js");
 const express = require("express");
 const connect = require("./config/db");
-// const path = require("path");
-// const fs = require("fs");
 const PORT = process.env.PORT || 5000;
 
 const app = express();
@@ -15,11 +12,6 @@ app.use(express.json());
 
 app.use(router);
 app.use(express.static("../frontend"));
-
-// ****SERVER TEST****
-app.get("/", (req, res) => {
-  res.send("Testing Chunk server....!!!");
-});
 
 // ****SERVER*****
 app.listen(PORT, "localhost", () => {

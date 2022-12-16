@@ -1,5 +1,5 @@
 const ChunkFile = require("../models/chunkSchema");
-const chunkModel = require("../models/chunkSchema");
+// const chunkModel = require("../models/chunkSchema");
 const fs = require("fs");
 const csv = require("csv-parser");
 const fastcsv = require("fast-csv");
@@ -82,10 +82,8 @@ const split = async () => {
   console.log("**** FILE SPLITTER COMPLETE ****");
 };
 
-module.exports = split;
-
 // get all Chunked Files
-exports.getAllChunks = async (req, res) => {
+const getAllChunks = async (req, res) => {
   try {
     let chunks = await ChunkFile.find();
     if (chunks.length === 0)
@@ -107,3 +105,5 @@ exports.getAllChunks = async (req, res) => {
     });
   }
 };
+
+module.exports = { split, getAllChunks };
