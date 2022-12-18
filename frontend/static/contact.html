@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us Page</title>
+    <link rel="stylesheet" href="../styles/contact.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Rubik:ital,wght@0,400;0,500;1,300&display=swap" rel="stylesheet"> 
+</head>
+<body>
+   <section class="first-section">
+    <nav>
+        <img src="../Resources/ChunkFIle.png" alt="logo">
+        <ul class="list1" id="list1">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Contact Us</a></li>
+
+            <div class="search-div2">
+                <img src="../Resources/Search.png" alt="search bar">
+                <input type="text"  placeholder="Type to search here...">
+            </div>
+        </ul>
+        <div class="photo-div">
+            <div class="search-div">
+                <img src="../Resources/Search.png" alt="search bar">
+                <input type="text">
+            </div>
+            <img src="../Resources/Ellipse 10.png" alt="User" class="user">
+            <a href="javascript:void(0);" onclick ="iconStuff()">
+               <img src="Resources/menu3.png" alt="menu" class="menu">
+            </a>
+        </div>
+    </nav>
+   </section>
+
+   <section class="second-section">
+    <h2>Contact Us</h2>
+    <p>If you have any questions, just fill in the contact form, and we will 
+        answer you shortly.</p>
+
+        <form>
+            <label>Full Name</label>
+            <input type="text" placeholder="Enter your full name">
+
+            <label>Email Address</label>
+            <input type="text" placeholder="Enter your Email Address">
+
+            <label class="textA">Message/Feedback</label>
+            <textarea placeholder="Enter your message here"></textarea>
+
+            <button>Send</button>
+        </form>
+   </section>
+
+   <section class="third-section">
+   <div class="container">
+    <div class="logo-div">
+       <div>
+        <img src="../Resources/ChunkFIle(1).png" alt="logo" class="logo2">
+        <div class="socials">
+         <img src="../Resources/f.png">
+         <img src="../Resources/instagram.png">
+         <a href="#"><img src="../Resources/linked_in.png"></a>
+         <a href="#"><img src="../Resources/twitter.png"></a>
+        </div>
+       </div>
+
+       <div class="subscribe">
+        <p>Subscribe to our newsletter</p>
+       <div class="button-holder">
+        <input type="text" placeholder="Enter your Email">
+        <button>Subscribe</button>
+       </div>
+       </div>
+    </div>
+
+
+    <div class="lists">
+        <ul class="shift-small">
+            <h4>Company</h4>
+            <li>Home</li>
+            <li>About</li>
+            <li>Conatct Us</li>
+            <li>FAQ</li>
+        </ul>
+
+        <ul>
+            <h4>Tools</h4>
+            <li>Split CSV</li>
+            <li>Split JSON</li>
+            <li>Convert CSV</li>
+            <li>Convert JSON</li>
+            <li>Others</li>
+        </ul>
+        
+    </div>
+   </div>
+
+   <footer>
+    <p>&#169; 2022 chunk file. All rights reserved.</p>
+   </footer>
+   
+   </section>
+
+   <script src="../scripts/contact.js"></script>
+</body>
+</html>
